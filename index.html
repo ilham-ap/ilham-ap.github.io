@@ -6,7 +6,31 @@
 	<link rel="stylesheet" href="styles/main.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"
 	<!--[if IE]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<script>
+	$(document).ready(function(){
 
+	$("nav a").on("click", function(event){
+		event.preventDefault();
+		$("nav").addClass("fixed");
+		id = ($(this).attr("href"));
+		scrollVertical = $(id).offset().top;
+
+		$("body, html").animate({scrollTop: scrollVertical});
+	});
+
+	$(document).on("scroll", function(){
+		secondPage = $("nav li:nth-child(2) a").attr("href");
+
+		if ( $("body").scrollTop() >= $("nav").height() )
+		{
+			$("nav").addClass("fixed");
+		} else {
+			$("nav").removeClass("fixed");
+		}
+	});
+
+});
+</script>
 </head>
 <body>
 	
